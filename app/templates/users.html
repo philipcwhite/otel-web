@@ -4,9 +4,7 @@
 {% endblock %}
 {% block body%} 
 <div class="card-div">
-  <div class="card-header"></div>
-  <div style = "padding: 0px 0px 0px 10px">
-  <h2>Users</h2>
+  <div class="card-header"></div><br /><span style="font-weight: bold;padding-left: 5px; padding-top: 3px;">Users</span><br />
   <div style="padding:10px">  
   <div style="display:table; width:100%;">
             {% for i in users %}
@@ -21,7 +19,6 @@
           </div>
           <br />
       <input type="button" onclick="window.location.href='/user_add'" class="action-button" value="Add User" />
-</div>
 </div>
 </div>
 {% endblock %}

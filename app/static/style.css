@@ -1,0 +1,64 @@
+
+html{max-width: 1200px;}
+body{margin:0px;padding:0px;height:100%;width:100%;font:12px "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;color:#8E8C84;}
+
+
+.action-button{border-radius:2px;color:#FFF;font-size:10px;background:#D9534F;padding:3px 5px;text-decoration: none;font-weight:bold;border-style:none;}
+.action-button:hover{background-color:#D23430;border-color: #C9302C;}
+
+
+
+.card-div{background-color: #FFFFFF; border: 1px solid #DFD7CA; border-radius: 3px; min-width: 100px;}
+.card-header {padding:3px;margin-bottom: 0;background-color:#F8F5F0;border-bottom: 1px solid #DFD7CA;font-weight: bold; font-size:11pt;}
+
+.device-stats {font-size:40px;font-weight:bold;color:#29ABE0 !important;height:50px;line-height:50px}
+.device-stats a:link {font-size:40px;font-weight:bold;columns: #29abe0 !important;text-decoration:none}
+.device-stats a:active {font-size:40px;font-weight:bold;color:#29ABE0 !important;text-decoration:none}
+.device-stats a:hover {font-size:40px;font-weight:bold;color:#29ABE0 !important;text-decoration:none}
+.device-stats a:visited {font-size:40px;font-weight:bold;color:#29ABE0 !important;text-decoration:none}
+
+.index-table {display: table; width: 100%;}
+.index-row {display: table-row}
+.index-cell {display: table-cell; padding:5px}
+
+.mon-container{padding-left:70px;padding-top:50px;padding-right:20px}
+.mon-container a:link {color:#8E8C84;text-decoration:none}
+.mon-container a:active{color:#8E8C84;text-decoration:none}
+.mon-container a:hover{color:#8E8C84;text-decoration:none}
+.mon-container a:visited {color:#8E8C84;text-decoration:none}
+
+.nav-sidebar{height:100%; width:50px; background-color:#325D88; position:fixed!important;}
+
+
+.search-div{float:right;width:200px;padding-top:8px}
+.search-button{border-radius:3px;color:#FFF;font-size:11px;background:#93C54B;padding:5px 5px;text-decoration:none;font-weight:bold;border-style:none;}
+.search-button:hover{background-color: #80b139;border-color: #79A736;}
+
+.text-input{height:18px;border-radius:3px;border: 1px solid #dfd7ca; font-size: 12px; color:#8E8C84;padding-left:5px}
+
+
+
+
+
+.nav-home{height: 20px; width: 20px;} 
+.nav-home path{fill:white} 
+.nav-home:hover path{fill:rgb(41,171,224);}
+.nav-settings{height: 20px; width: 20px;} 
+.nav-settings path{fill:white} 
+.nav-settings:hover path{fill:rgb(217,83,79);}
+
+.search-icon{color:#8E8C84; height:16px; width:16px; line-height:16px; vertical-align: middle;}
+.search-icon path{fill:#8E8C84;}
+
+
+
+
+.user-font{color:#8E8C84;height:12px;width:12px;}
+
+.bread-div{position: absolute; top:14px; left:74px; display: flex; color:#8E8C84; height: 14px;}
+.bread-home{height: 12px; width: 12px; vertical-align: middle;}
+.bread-home path{fill:rgb(142,140,132);}
+.bread-settings{height: 12px; width: 12px; vertical-align: middle;}
+.bread-settings path{fill:rgb(142,140,132);}
+.bread-user{height: 11px; width: 11px; vertical-align: middle;}
+.bread-user path{fill:rgb(142,140,132);}

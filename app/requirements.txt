@@ -1,0 +1,5 @@
+flask
+opentelemetry-distro
+opentelemetry-proto
+grpcio
+grpcio-tools

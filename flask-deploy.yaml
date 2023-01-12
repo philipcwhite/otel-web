@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pydemo
+  namespace: apps
+  labels:
+    app: pydemo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: pydemo
+  template:
+    metadata:
+      labels:
+        app: pydemo
+    spec:
+      containers:
+      - name: pydemo
+        image: philwhite/pydemo:gcp
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 250M
+          limits:
+            cpu: 100m
+            memory: 250M

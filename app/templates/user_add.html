@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block breadcrumbs %}
+{% include "bread_settings.html" %}
+{% endblock %}
+{% block body%}
+<div class="card-div">
+  <div class="card-header"></div>
+  <div style = "padding: 0px 0px 0px 10px">
+  <h2>Add User</h2>
+  <div style="padding:10px"> 
+      <form action="" method="POST">
+        <div style="display:table; width:50%;">
+          <div style="display: table-row;">
+            <div style="display:table-cell">User</div>
+            <div style="display:table-cell"><input type="text" class="text-input" name="user" /></div>
+          </div>
+          <div style="display: table-row;">
+              <div style="display:table-cell">New Password</div>
+              <div style="display:table-cell"><input type="password" class="text-input" name="password" /></div>
+          </div>
+        </div>
+        <br />
+        <input type="submit" class="action-button" value="Submit" />
+      </form>
+      </div>
+      </div>
+</div>
+</div>
+{% endblock %}

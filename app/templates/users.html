@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block breadcrumbs %}
+{% include "bread_settings.html" %}
+{% endblock %}
+{% block body%} 
+<div class="card-div">
+  <div class="card-header"></div>
+  <div style = "padding: 0px 0px 0px 10px">
+  <h2>Users</h2>
+  <div style="padding:10px">  
+  <div style="display:table; width:100%;">
+            {% for i in users %}
+            <div style="display: table-row;">
+              <div style="display:table-cell">{{i[1]}}</div>
+              <div style="display:table-cell; text-align:right">
+                <input type="button" onclick="window.location.href='/user_pass/{{i[1]}}'" class="action-button" value="Password" />
+                <input type="button" onclick="window.location.href='/user_delete/{{i[0]}}'" class="action-button" value="Delete" />
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <br />
+      <input type="button" onclick="window.location.href='/user_add'" class="action-button" value="Add User" />
+</div>
+</div>
+</div>
+{% endblock %}

@@ -21,13 +21,13 @@ class Data:
         sql = "insert into metrics (timestamp, hostname, resource, scopemetrics) values (?, ?, ?, ?);"
         self.cursor.execute(sql, (self.timestamp, hostname, resource, scopemetrics))
         self.con.commit()
-    def insert_logs_json(self, hostname, resource, scopelogs):
-        sql = "insert into logs (timestamp, hostname, resource, scopelogs) values(?, ?, ?, ?);"
-        self.cursor.execute(sql, (self.timestamp, hostname, resource, scopelogs))
+    def insert_logs_json(self, packet):
+        sql = "insert into logs (timestamp, data) values(?, ?)"
+        self.cursor.execute(sql, (self.timestamp, packet))
         self.con.commit()
-    def insert_trace_json(self, hostname, resource, scopespans):
-        sql = "insert into traces (timestamp, hostname, resource, scopespans) values(?, ?, ?, ?);"
-        self.cursor.execute(sql, (self.timestamp, hostname, resource, scopespans))
+    def insert_trace_json(self, packet):
+        sql = "insert into traces (timestamp, data) values(?, ?)"
+        self.cursor.execute(sql, (self.timestamp, packet))
         self.con.commit()
 
 
@@ -35,6 +35,18 @@ class MetricsServiceServicer(metrics_service_pb2_grpc.MetricsServiceServicer):
     def Export(self, request, context):
         packet=MessageToJson(request)
         jdata = json.loads(str(packet))
+        '''for i in jdata["resourceMetrics"]:
+            hostname = None
+            attributes = i["resource"]["attributes"]
+            scopemetrics = i["scopeMetrics"]
+            for i in attributes:
+                if i["key"] == "host.name":
+                    hostname = i["value"]["stringValue"]
+            for i in scopemetrics:
+                attributes = json.dumps(attributes)
+                metrics = json.dumps(i["metrics"])
+                print(hostname, attributes, metrics, "\n")'''
+
         for i in jdata["resourceMetrics"]:
             hostname = None
             resource = i["resource"]
@@ -46,8 +58,10 @@ class MetricsServiceServicer(metrics_service_pb2_grpc.MetricsServiceServicer):
                 resource = json.dumps(resource)
                 scopemetrics = json.dumps(i)
                 print(hostname, resource, scopemetrics, "\n")
-                D = Data()
-                D.insert_metrics_json(hostname, resource, scopemetrics)
+                #D = Data()
+                #D.insert_metrics_json(hostname, resource, scopemetrics)
+            D=Data()
+            D.insert_metrics_json(hostname, "", packet)
         
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         return ExportMetricsServiceResponse()
@@ -55,44 +69,18 @@ class MetricsServiceServicer(metrics_service_pb2_grpc.MetricsServiceServicer):
 class LogsServiceServicer(logs_service_pb2_grpc.LogsServiceServicer):
     def Export(self, request, context):
         packet=MessageToJson(request)
-        #print(packet)
-        hostname = None
-        resource = i["resource"]
-        scopelogs = i["scopeLogs"]
-        for i in resource["attributes"]:
-            if i["key"] == "host.name":
-                hostname = i["value"]["stringValue"]
-        for i in scopelogs:
-            resource = json.dumps(resource)
-            scopelogs = json.dumps(i)
-            print(hostname, resource, scopelogs, "\n")
-            D = Data()
-            D.insert_metrics_json(hostname, resource, scopelogs)
-        
-        #D = Data()
-        #D.insert_logs_json(packet)
+        print(packet)
+        D = Data()
+        D.insert_logs_json(packet)
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         return ExportLogsServiceResponse()
 
 class TraceServiceServicer(trace_service_pb2_grpc.TraceServiceServicer):
     def Export(self, request, context):
         packet=MessageToJson(request)
-        #print(packet)
-        #D = Data()
-        #D.insert_trace_json(packet)
-        hostname = None
-        resource = i["resource"]
-        scopespans = i["scopeSpans"]
-        for i in resource["attributes"]:
-            if i["key"] == "host.name":
-                hostname = i["value"]["stringValue"]
-        for i in scopespans:
-            resource = json.dumps(resource)
-            scopespans = json.dumps(i)
-            print(hostname, resource, scopespans, "\n")
-            D = Data()
-            D.insert_metrics_json(hostname, resource, scopespans)
-        
+        print(packet)
+        D = Data()
+        D.insert_trace_json(packet)
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         return ExportTraceServiceResponse()
 

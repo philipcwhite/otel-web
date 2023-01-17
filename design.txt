@@ -1,0 +1,5 @@
+metrics
+timestamp  hostname attributes scope metrics
+
+logs
+timestamp  hostname  attributes  logs
